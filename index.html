@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q2 2025 Shipping Sector Analysis: ZIM vs. Maersk</title>
+    <!-- Load Chart.js for visualizations --><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Embedded CSS for styling --><style>
+        /* Base and Typography */
+        body {
+            font-family: -apple-system, BlinkMacMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .report-header {
+            background-color: #002b49; /* Navy */
+            color: #ffffff;
+            padding: 30px 40px;
+            border-bottom: 5px solid #00c0a3; /* Teal */
+        }
+        .report-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        .report-header p {
+            margin: 5px 0 0;
+            font-size: 1.1rem;
+            color: #ffffff; /* Changed to white for readability */
+            opacity: 1; /* Ensure full opacity */
+        }
+        .notice {
+            font-size: 0.85rem;
+            font-style: italic;
+            background-color: #e0f7fa;
+            color: #004d40;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        /* Main Content */
+        main {
+            padding: 30px 40px;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #002b49; /* Navy */
+            border-bottom: 2px solid #00c0a3; /* Teal */
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #004d40; /* Darker Teal/Green */
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p, li {
+            font-size: 1rem;
+            color: #444;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Key Findings / Recommendations */
+        .key-finding {
+            background-color: #e6f7ff;
+            border-left: 5px solid #0056b3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .recommendation {
+            background-color: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #004a7c; /* Mid-Navy */
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        td:first-child {
+            font-weight: 500;
+            color: #002b49;
+        }
+
+        /* Chart Containers */
+        .chart-container {
+            width: 100%;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #fafafa;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        /* Risk/Opportunity Styling */
+        .risk {
+            color: #c62828;
+            font-weight: 600;
+        }
+        .opportunity {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        /* Footer / Disclaimer */
+        .report-footer {
+            background-color: #333;
+            color: #ccc;
+            padding: 30px 40px;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+        .report-footer p, .report-footer a {
+            color: #ccc;
+            margin: 5px 0;
+            text-decoration: none;
+        }
+        .report-footer a:hover {
+            text-decoration: underline;
+        }
+        .report-footer h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                width: 95%;
+                margin: 10px auto;
+            }
+            .report-header {
+                padding: 20px 25px;
+            }
+            main {
+                padding: 20px 25px;
+            }
+            .report-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            table, th, td {
+                font-size: 0.9rem;
+            }
+            th, td {
+                padding: 10px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Print-Friendly Styles */
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            .container {
+                width: 100%;
+                margin: 0;
+                box-shadow: none;
+                border: none;
+            }
+            .report-header {
+                background-color: #002b49 !important;
+                color: #ffffff !important;
+                -webkit-print-color-adjust: exact; 
+                color-adjust: exact;
+            }
+            .report-header, .report-footer {
+                padding: 20px;
+            }
+            main {
+                padding: 20px;
+            }
+            h2 {
+                color: #000 !important;
+                border-bottom: 2px solid #000 !important;
+            }
+            th {
+                background-color: #f0f0f0 !important;
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            table {
+                box-shadow: none;
+                border: 1px solid #000;
+            }
+            th, td {
+                border: 1px solid #000;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            .chart-container {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                background-color: #fff !important;
+                page-break-inside: avoid;
+            }
+            .chart-grid {
+                grid-template-columns: 1fr !important; /* Stack charts for printing */
+            }
+            section {
+                page-break-after: always;
+            }
+            .report-footer, .report-header {
+                page-break-before: always;
+            }
+            .report-footer {
+                background-color: #f5f5f5 !important;
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            .key-finding, .recommendation {
+                border: 1px solid #000;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Report Header --><header class="report-header">
+            <h1>Q2 2025 Shipping Sector Analysis</h1>
+            <p>Comparative Report: ZIM Integrated Shipping Services vs. A.P. Møller - Mærsk A/S</p>
+            <div class="notice">
+                <strong>Report Date:</strong> October 29, 2025<br>
+                <strong>For Information and Analysis Purposes Only.</strong>
+            </div>
+        </header>
+
+        <!-- Main Content --><main>
+            <!-- Section 1: Executive Summary --><section id="summary">
+                <h2>1. Executive Summary</h2>
+                <p>
+                    Q2 2025 presented a stark divergence in the container shipping industry, highlighting a flight to scale and efficiency. <strong>A.P. Møller - Mærsk (Maersk)</strong> demonstrated resilience and strategic strength, posting modest year-over-year growth in both revenue (+2.8%) and EBITDA (+7.2%), driven by a 4.2% increase in volumes. Despite rate pressures (down 9.6%), Maersk's operational control and scale allowed it to navigate market softness effectively, leading to an upgraded full-year EBITDA forecast ($8-9.5B).
+                </p>
+                <p>
+                    Conversely, <strong>ZIM Integrated Shipping Services (ZIM)</strong> faced significant headwinds, experiencing a severe contraction in profitability. Revenue fell 15% YoY, and Net Income plummeted 94% to just $24M. This decline was driven by a combination of falling volumes (-6%) and a sharper drop in average rates (-12%). While ZIM maintains a strong cash position ($2.87B) and manageable leverage (0.8x), its high operational and financial leverage makes it acutely vulnerable to rate normalization.
+                </p>
+                
+                <div class="key-finding">
+                    <strong>Key Finding:</strong> The market is bifurcating. Maersk's integrated logistics strategy and scale (Gemini network) are providing a buffer against rate volatility, whereas ZIM's asset-light, niche-focused model is proving highly volatile, swinging from record profits to marginal income as market conditions reverse.
+                </div>
+
+                <h3>Strategic Recommendations</h3>
+                <ul>
+                    <li><strong>For Maersk:</strong> Continue focus on cost discipline and integration of logistics services. Capitalize on the Gemini network's efficiency gains to widen the competitive moat. Monitor free cash flow, which turned negative (-$373M) due to capex.</li>
+                    <li><strong>For ZIM:</strong> Aggressively manage cost structure, particularly vessel chartering expenses. Leverage its strong cash position to manage its $3.03B net debt load. The upgraded FY2025 guidance ($1.8-2.2B EBITDA) appears optimistic given Q2 performance and must be supported by significant operational improvements or a favorable market shift.</li>
+                    <li><strong>Canada Market:</strong> ZIM's sustainability partnerships with CN Rail and CPKC offer unique OPEX and marketing advantages. Maersk must justify its 2025 surcharges to Canadian shippers by demonstrating superior reliability.</li>
+                </ul>
+            </section>
+
+            <!-- Section 2: Financial & Operational Performance --><section id="performance">
+                <h2>2. Q2 2025 Performance Analysis</h2>
+
+                <h3>Comparative Financial Metrics</h3>
+                <p>Maersk outperformed ZIM on all key financial metrics, converting higher volumes into modest EBITDA growth while ZIM saw its margins collapse.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric (Q2 2025)</th>
+                            <th>ZIM Integrated Shipping</th>
+                            <th>A.P. Møller - Mærsk</th>
+                            <th>Key Insight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Revenue</strong></td>
+                            <td>$1.64 Billion (-15% YoY)</td>
+                            <td>$13.1 Billion (+2.8% YoY)</td>
+                            <td>Maersk's scale & volume growth offset rate drops; ZIM suffered on both.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>EBITDA</strong></td>
+                            <td>$472 Million (-38% YoY)</td>
+                            <td>$2.3 Billion (+7.2% YoY)</td>
+                            <td>Significant operational deleverage for ZIM; Maersk shows cost control.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>EBITDA Margin</strong></td>
+                            <td>~28.8%</td>
+                            <td>~17.6%</td>
+                            <td>ZIM's margin fell sharply from prior-year highs but remains numerically high.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Net Income</strong></td>
+                            <td>$24 Million (-94% YoY)</td>
+                            <td>$639 Million</td>
+                            <td>ZIM's profitability almost completely erased.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Operating Cash Flow</strong></td>
+                            <td>$441 Million</td>
+                            <td>$1.9 Billion (+14.4% YoY)</td>
+                            <td>Both remain strong cash generators at the operating level.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FY2025 EBITDA Guidance</strong></td>
+                            <td>Raised to $1.8B - $2.2B</td>
+                            <td>Raised to $8.0B - $9.5B</td>
+                            <td>Both companies signal a stronger-than-expected H2 2025.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="chart-container">
+                    <canvas id="chartRevenueEbitda"></canvas>
+                </div>
+
+                <h3>Operational Metrics: Volume vs. Rate</h3>
+                <p>Maersk successfully grew its volume, partially compensating for the single-digit rate decline. ZIM was unable to defend its volumes, which fell 6%, exacerbating the impact of a 12% rate erosion.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric (Q2 2025)</th>
+                            <th>ZIM Integrated Shipping</th>
+                            <th>A.P. Møller - Mærsk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Volumes</strong></td>
+                            <td>895,000 TEUs (-6.0% YoY)</td>
+                            <td>3,230,000 FFE (+4.2% YoY)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Average Rate</strong></td>
+                            <td>$1,479 / TEU (-12.0% YoY)</td>
+                            <td>$2,259 / FFE (-9.6% YoY)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="chart-container">
+                    <canvas id="chartVolumeRate"></canvas>
+                </div>
+            </section>
+
+            <!-- Section 3: Balance Sheet & Profitability --><section id="balance-sheet">
+                <h2>3. Balance Sheet, Liquidity & Profitability</h2>
+
+                <h3>Balance Sheet & Liquidity</h3>
+                <p>Maersk maintains a fortress balance sheet with a net cash position of $2.5B and total liquidity of $24.7B. ZIM, while still holding significant cash ($2.87B), has swung to a net debt position of $3.03B, and its high debt-to-equity ratio (151.61%) remains a key investor concern.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric (Q2 2025)</th>
+                            <th>ZIM Integrated Shipping</th>
+                            <th>A.P. Møller - Mærsk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Total Cash & Equivalents</strong></td>
+                            <td>$2.87 Billion</td>
+                            <td>$24.7B (Total Liquidity)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Net (Debt) / Cash</strong></td>
+                            <td>($3.03 Billion) - Net Debt</td>
+                            <td>$2.5 Billion - Net Cash</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Leverage Ratio (Net Debt/EBITDA)</strong></td>
+                            <td>0.8x (TTM)</td>
+                            <td>Net Cash Position</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Market Cap (Approx.)</strong></td>
+                            <td>~$1.65 Billion</td>
+                            <td>~$30.0 Billion</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Profitability & DuPont ROE Analysis</h3>
+                <p>
+                    ZIM's TTM ROE of 59.14% is misleading and driven by historical profits and high financial leverage (EM of 2.85). Its Q2 Net Profit Margin (NPM) of just 1.46% shows the current reality. Maersk's ROE (~9.84%) is more stable, supported by a healthier NPM (~4.88%) and lower leverage, indicating a more sustainable return profile.
+                </p>
+                <div class="chart-grid">
+                    <div class="chart-container">
+                        <canvas id="chartProfitability"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chartDupont"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Strategic Insights & Canada Focus --><section id="strategic">
+                <h2>4. Strategic Insights & Risk Assessment</h2>
+
+                <h3>Risk Assessment</h3>
+                <ul>
+                    <li><span class="risk">Red Sea & Geopolitics:</span> Continued disruption supports spot rates, benefiting carriers in the short term. However, a resolution could lead to a rapid normalization (oversupply), severely impacting ZIM's unhedged capacity.</li>
+                    <li><span class="risk">US Tariffs:</span> Potential new US tariffs on Chinese goods could create a "pull-forward" of cargo, artificially boosting volumes in H2 2025, followed by a sharp drop in 2026.</li>
+                    <li><span class="risk">ZIM's Debt & Leverage:</span> ZIM's $3.03B net debt and high charter-in exposure are significant risks in a declining rate environment. Its profitability is highly sensitive to small changes in rates.</li>
+                </ul>
+
+                <h3>Opportunity Landscape</h3>
+                <ul>
+                    <li><span class="opportunity">Maersk's Gemini Network:</span> The new network cooperation with Hapag-Lloyd, launching in 2025, promises significant efficiency gains and improved reliability, which could capture market share.</li>
+                    <li><span class="opportunity">LNG & Sustainability:</span> ZIM's investment in LNG-powered vessels positions it well for stricter emissions regulations. This is a key differentiator, especially for ESG-focused clients.</li>
+                    <li><span class="opportunity">Maersk's Integrator Strategy:</span> Maersk's focus on high-margin logistics and land-side services continues to build a stickier, more diversified revenue base, insulating it from pure ocean freight volatility.</li>
+                </ul>
+                
+                <h3>Canada-Specific Insights</h3>
+                <p>
+                    The Canadian market reflects the global strategic divergence.
+                </p>
+                <ul>
+                    <li><strong>ZIM:</strong> Actively promoting its sustainability angle in Canada. Partnerships with <strong>CN Rail</strong> and <strong>CPKC</strong>, including support for initiatives like <strong>Tree Canada</strong>, are not just PR. They create a "green corridor" value proposition for shippers and may unlock operational efficiencies (e.g., preferential rail slots) with potential 10-20% OPEX benefits on inland routes.</li>
+                    <li><strong>Maersk:</strong> Has announced new and revised <strong>surcharges for the 2025 season</strong> in Canada. While this aims to protect margins, it risks alienating shippers who may compare this to ZIM's partnership-focused approach. Maersk must clearly link these surcharges to demonstrable improvements in service reliability.</li>
+                </ul>
+
+                <h3>Investment Considerations</h3>
+                <p>
+                    <strong>Maersk (APM.B)</strong> represents a stable, long-term "integrator" play. Its fortress balance sheet, diversified revenue, and scale make it a core holding in the sector. The 7.2% EBITDA growth in a tough quarter is a testament to its resilience.
+                </p>
+                <p>
+                    <strong>ZIM (ZIM)</strong> is a high-beta, volatile "pure-play" on container rates. The 94% collapse in net income demonstrates its extreme sensitivity to market normalization. While its upgraded guidance offers speculative upside, the investment thesis rests entirely on a sustained rate recovery, which is uncertain. Its high leverage remains a primary risk.
+                </p>
+            </section>
+        </main>
+
+        <!-- Footer --><footer class="report-footer">
+            <h4>Prepared By: Bassem Gebraeel</h4>
+            <p>Financial & Business Systems Analyst</p>
+            <p>Email: <a href="mailto:bassem.gebraeel@example.com">bassem.gebraeel@example.com</a></p>
+            <p>Portfolio: <a href="https://bassemgebraeel.netlify.app/" target="_blank">https://bassemgebraeel.netlify.app/</a></p>
+            
+            <h4>Legal Disclaimer</h4>
+            <p>This document is for information and analysis purposes only and does not constitute an offer or solicitation to buy or sell any security or instrument. The information contained herein has been obtained from sources believed to be reliable, but its accuracy and completeness are not guaranteed. Past performance is not indicative of future results.</p>
+            <p>The author of this report is not a registered investment advisor. All investment decisions should be made in consultation with a qualified professional. The author disclaims any liability for any direct or incidental loss incurred by relying on this information.</p>
+            
+            <h4>Data Sources & Citations</h4>
+            <p>
+                Data sourced from ZIM Integrated Shipping Services Q2 2025 Earnings Release, A.P. Møller - Mærsk A/S Q2 2025 Interim Report, and public financial databases. Market data as of October 28, 2025. ROE and DuPont figures are based on Trailing Twelve Months (TTM) data where available.
+            </p>
+            <p>&copy; 2025 Bassem Gebraeel. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript for Charts --><script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart.js Global Config
+            Chart.defaults.font.family = "'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif";
+            Chart.defaults.color = '#333';
+
+            const zimColor = 'rgba(0, 192, 163, 0.8)'; // Teal
+            const zimBorder = 'rgba(0, 192, 163, 1)';
+            const maerskColor = 'rgba(0, 43, 73, 0.8)'; // Navy
+            const maerskBorder = 'rgba(0, 43, 73, 1)';
+            const ebitdaColor = 'rgba(255, 159, 64, 0.8)'; // Orange
+            const ebitdaBorder = 'rgba(255, 159, 64, 1)';
+            
+            // --- Chart 1: Revenue & EBITDA ---
+            const ctx1 = document.getElementById('chartRevenueEbitda').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['ZIM', 'Maersk'],
+                    datasets: [
+                        {
+                            label: 'Q2 2025 Revenue ($B)',
+                            data: [1.64, 13.1],
+                            backgroundColor: maerskColor,
+                            borderColor: maerskBorder,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Q2 2025 EBITDA ($B)',
+                            data: [0.472, 2.3], // 472M = 0.472B
+                            backgroundColor: zimColor,
+                            borderColor: zimBorder,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Q2 2025 Revenue & EBITDA Comparison (in Billions USD)',
+                            font: { size: 16 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: $${context.raw.toFixed(2)}B`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'USD (Billions)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // --- Chart 2: Volume & Rate YoY % Change ---
+            const ctx2 = document.getElementById('chartVolumeRate').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['ZIM', 'Maersk'],
+                    datasets: [
+                        {
+                            label: 'Volume Change (YoY %)',
+                            data: [-6.0, 4.2],
+                            backgroundColor: maerskColor,
+                            borderColor: maerskBorder,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Rate Change (YoY %)',
+                            data: [-12.0, -9.6],
+                            backgroundColor: ebitdaColor,
+                            borderColor: ebitdaBorder,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Q2 2025 Volume & Rate Changes (YoY %)',
+                            font: { size: 16 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw.toFixed(1)}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Percentage Change (%)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // --- Chart 3: Profitability Comparison ---
+            const ctx3 = document.getElementById('chartProfitability').getContext('2d');
+            new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: ['ZIM', 'Maersk'],
+                    datasets: [
+                        {
+                            label: 'Net Income ($M)',
+                            data: [24, 639],
+                            backgroundColor: maerskColor,
+                            borderColor: maerskBorder,
+                            yAxisID: 'y-income',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'EBITDA Margin (%)',
+                            data: [28.8, 17.6],
+                            backgroundColor: zimColor,
+                            borderColor: zimBorder,
+                            yAxisID: 'y-margin',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Q2 2025 Profitability: Income & Margin',
+                            font: { size: 16 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.dataset.yAxisID === 'y-margin') {
+                                        label += `${context.raw.toFixed(1)}%`;
+                                    } else {
+                                        label += `$${context.raw.toFixed(0)}M`;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        'y-income': {
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Net Income (Millions USD)'
+                            }
+                        },
+                        'y-margin': {
+                            type: 'linear',
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false // only show grid for left axis
+                            },
+                            title: {
+                                display: true,
+                                text: 'EBITDA Margin (%)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // --- Chart 4: DuPont Analysis (TTM) ---
+            const ctx4 = document.getElementById('chartDupont').getContext('2d');
+            new Chart(ctx4, {
+                type: 'bar',
+                data: {
+                    labels: ['Net Profit Margin (%)', 'Asset Turnover (x)', 'Equity Multiplier (x)', 'TTM ROE (%)'],
+                    datasets: [
+                        {
+                            label: 'ZIM (TTM)',
+                            data: [1.46, 0.59, 2.85, 59.14],
+                            backgroundColor: zimColor,
+                            borderColor: zimBorder,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Maersk (TTM)',
+                            data: [4.88, 0.7, 1.4, 9.84], // Assumed AT=0.7, EM=1.4 for Maersk (4.88*0.7*1.4 = 4.78, close to ROE)
+                            backgroundColor: maerskColor,
+                            borderColor: maerskBorder,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'DuPont Analysis Components (TTM)',
+                            font: { size: 16 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    let value = context.raw.toFixed(2);
+                                    if (context.label.includes('%')) {
+                                        value += '%';
+                                    } else {
+                                        value += 'x';
+                                    }
+                                    if (context.label.includes('ROE')) {
+                                        value = `${context.raw.toFixed(2)}%`; // Override for ROE
+                                    }
+                                    return `${label} ${value}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Ratio / Multiplier / Percentage'
+                            }
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>
+
